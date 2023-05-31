@@ -39,5 +39,14 @@ export class PrimeService {
     return this.httpClient.post(this.baseUrl + `/api/gtnsnapshotgriddata/`, post_data)
   }
 
-  // }
+  getCloseListGridData(): Observable<any> {
+    const post_data = {
+      "client_id": Number(localStorage.getItem('client_id')),
+      "org_id": Number(localStorage.getItem('org_id')),
+      "selected_close_month":20230415,
+      "selected_calc_type":"CA",
+      "is_excel":"N"
+    }
+    return this.httpClient.get(this.baseUrl + `/api/gtnsnapshotlist/${post_data.client_id}/${post_data.org_id}/${post_data.selected_close_month}/${post_data.selected_calc_type}/${post_data.is_excel}`)
+  }
 }

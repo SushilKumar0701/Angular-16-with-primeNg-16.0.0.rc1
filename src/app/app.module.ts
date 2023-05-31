@@ -14,12 +14,15 @@ import { ToastModule } from 'primeng/toast';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TreeTableComponent } from './components/tree-table/tree-table.component';
 import { CloseListComponent } from './components/close-list/close-list.component';
+import { HomeComponent } from './components/home/home.component';
+import { TabMenuModule } from 'primeng/tabmenu';
 
 @NgModule({
   declarations: [
     AppComponent,
     TreeTableComponent,
-    CloseListComponent
+    CloseListComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { CloseListComponent } from './components/close-list/close-list.component
     TreeTableModule,
     ButtonModule,
     ToastModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    TabMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
