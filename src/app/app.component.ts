@@ -1,6 +1,6 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { PrimeService } from '../services/prime.service';
-import { NodeService } from '../services/nodeService';
+import { NodeService } from '../services/nodeservice';
 import { TreeNode, MessageService } from 'primeng/api';
 
 @Component({

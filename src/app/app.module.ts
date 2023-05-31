@@ -12,10 +12,14 @@ import { TreeTableModule } from 'primeng/treetable'
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TreeTableComponent } from './components/tree-table/tree-table.component';
+import { CloseListComponent } from './components/close-list/close-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TreeTableComponent,
+    CloseListComponent
   ],
   imports: [
     BrowserModule,
