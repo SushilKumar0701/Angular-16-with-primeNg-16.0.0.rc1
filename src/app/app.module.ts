@@ -10,6 +10,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { TreeModule } from 'primeng/tree';
 import { TreeTableModule } from 'primeng/treetable'
 import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { ButtonModule } from 'primeng/button';
     MatSlideToggleModule,
     TreeModule,
     TreeTableModule,
-    ButtonModule
+    ButtonModule,
+    ToastModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

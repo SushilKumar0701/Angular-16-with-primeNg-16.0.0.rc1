@@ -1,4 +1,4 @@
-<div style="height: 100%; width: 100%;padding: 10px;border: 1px solid grey;">
+<div style="height: 100%; width: 100%;padding: 10px;">
   <div>
       <div class="row action-panel filter-panel-padding">
           <div>
@@ -51,29 +51,58 @@
         </tr>
     </ng-template>
   </p-treeTable> -->
-
-  <p-treeTable [value]="data">
-    <ng-template pTemplate="header" let-rowNode>
-      <!-- Define the table column headers -->
-      <tr>
-        <th *ngFor="let column of columns">{{ column.field }}</th>
-        <!-- <th >Client id</th>
-        <th>Client key</th>
-        <th>Client Name</th> -->
-        <!-- Add more columns as needed -->
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
-      <!-- Define the table rows and cells -->
-      <tr>
-        <td *ngFor="let column of columns">{{rowData[column.field]}}</td>
-        <!-- <td><p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>{{rowData.client_id}}</td>
-        <td>{{rowData.client_key}}</td>
-        <td>{{rowData.client_name}}</td> -->
-        <!-- Add more cells as needed -->
-      </tr>
-    </ng-template>
-  </p-treeTable>
+  <div *ngIf="isUserQueryInterface">
+    <p-toast></p-toast>
+    <p-treeTable [value]="data" [columns]="columns" [scrollable]="true" [paginator]="true" [rows]="10" selectionMode="single" [(selection)]="selectedNode" dataKey="name" (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)" [tableStyle]="{'min-width':'50rem'}">
+      <ng-template pTemplate="caption"> Query Response </ng-template>
+      <ng-template pTemplate="header" let-columns>
+        <!-- Define the table column headers -->
+        <tr>
+          <th *ngFor="let column of columns" [ttSortableColumn]="column.field">{{ column.field }}
+          <!-- Sort table -->
+            <p-treeTableSortIcon [field]="column.field"></p-treeTableSortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowNode let-rowData="rowData" let-columns="columns">
+        <!-- Define the table rows and cells -->
+        <tr [ttRow]="rowNode" [ttSelectableRow]="rowNode">
+          <td *ngFor="let column of columns; let i = index">
+            <p-treeTableToggler [rowNode]="rowNode" *ngIf="i === 0"></p-treeTableToggler>
+            {{ rowData[column.field] }}
+          </td>
+        </tr>
+      </ng-template>
+      <!-- <ng-template pTemplate="summary">
+        <div style="text-align:left">
+            <p-button icon="pi pi-refresh" label="Reload"></p-button>
+        </div>
+      </ng-template> -->
+      <ng-template pTemplate="paginatorleft">
+        <p-button icon="pi pi-refresh" styleClass="p-button-text"></p-button>
+      </ng-template>
+      <ng-template pTemplate="paginatorright">
+          <p-button icon="pi pi-download" styleClass="p-button-text"></p-button>
+      </ng-template>
+    </p-treeTable>
+  </div>
+  
+  <div *ngIf="isCloseSnapshots">
+    <p-treeTable [value]="data">
+      <ng-template pTemplate="header" let-rowNode>
+        <!-- Define the table column headers -->
+        <tr>
+          <th *ngFor="let column of closeGridColumns">{{ column.header }}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+        <!-- Define the table rows and cells -->
+        <tr>
+          <td *ngFor="let column of closeGridColumns">{{rowData[column.field]}}</td>
+        </tr>
+      </ng-template>
+    </p-treeTable>
+  </div>
       
   </div>
 </div>
