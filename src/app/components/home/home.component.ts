@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit{
   ngOnInit(): void {
     this.items = [
       { label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/home' },
-      { label: 'Data Load', icon: 'pi pi-fw pi-cog', routerLink: '/data' },
+      { label: 'Home Close', icon: 'pi pi-fw pi-cog', routerLink: '/home-close' },
       { label: 'Forecast', icon: 'pi pi-fw pi-calendar', routerLink: '/forecast' },
       { label: 'Close', icon: 'pi pi-fw pi-pencil', routerLink: '/close' },
       { label: 'Report', icon: 'pi pi-fw pi-file', routerLink: '/report' },

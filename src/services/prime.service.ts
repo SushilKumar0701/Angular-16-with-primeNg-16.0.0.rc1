@@ -43,10 +43,24 @@ export class PrimeService {
     const post_data = {
       "client_id": Number(localStorage.getItem('client_id')),
       "org_id": Number(localStorage.getItem('org_id')),
-      "selected_close_month":20230415,
+      "selected_close_month":20220515,
       "selected_calc_type":"CA",
       "is_excel":"N"
     }
     return this.httpClient.get(this.baseUrl + `/api/gtnsnapshotlist/${post_data.client_id}/${post_data.org_id}/${post_data.selected_close_month}/${post_data.selected_calc_type}/${post_data.is_excel}`)
+  }
+
+  getHomeCloseGridData(): Observable<any> {
+    const post_data = {
+      "client_id": 17,
+      "org_id": 17,
+      "close_month_id":20221115,
+      "item_level":1,
+      "items":17,
+      "close_id":47,
+      "download_attachment":"N",
+      "is_excel":"N"
+    }
+    return this.httpClient.get(this.baseUrl + `/api/gtnhomeclosegriddata/${post_data.client_id}/${post_data.org_id}/${post_data.close_month_id}/${post_data.item_level}/${post_data.items}/${post_data.close_id}/${post_data.download_attachment}/${post_data.is_excel}`)
   }
 }
