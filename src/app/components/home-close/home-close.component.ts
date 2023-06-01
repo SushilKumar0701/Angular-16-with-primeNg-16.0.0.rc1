@@ -32,12 +32,14 @@ export class HomeCloseComponent implements OnInit{
   homeCloseCols: any[] = []
   categories: Category[] = [];
   resizableFlag = true
+  frozenCols: any[] = [];
 
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  }
   getColumnDef(){
     this.homeCloseCols = [
-      {headerName: 'GTN Channel Name', field: 'line_name',resizable: this.resizableFlag},
       {headerName: 'Close', field: 'close_value',resizable: this.resizableFlag, type: 'rightAligned', color:'red',
       cellRenderer: (params:any) => {
         return this.formatGridValues(params.value)
@@ -72,6 +74,7 @@ export class HomeCloseComponent implements OnInit{
   getHomeCloseGrid(){
     this.loading = true;
     this.getColumnDef()
+    this.formatTreeTableGrid()
 
     this.primeService.getHomeCloseGridData().subscribe(
     (response) => {
@@ -148,22 +151,12 @@ export class HomeCloseComponent implements OnInit{
     return tree
   }
 
+  formatTreeTableGrid(){
+    this.frozenCols = [{ field: 'line_name', headerName: 'GTN Channel Name' }];
+  }
+
   formatGridValues(value:any){
     console.log("Values ", value)
     return (typeof(value) != 'string' && value != null ) ? (value >= 0 ? ('$'+value.toLocaleString('en-US', {maximumFractionDigits: 2, minimumFractionDigits: 2})) : (`<span class="custom-grid-css">($`+Math.abs(value).toLocaleString('en-US', {maximumFractionDigits: 2, minimumFractionDigits: 2})+`)</span>`)) : value
   }
-  //For Backup purpose only
-  // this.data = this.categories.map((item:any) => {
-  //   // Adjust the property names and structure to match your API response
-  //   return {
-  //     data: item,
-  //     children: item.children ? item.children.map((child:any) => {
-  //       return {
-  //         data: child,
-  //         children: [] // Adjust if children have further nested levels
-  //       };
-  //     }):'',
-  //   };
-  // });
-
 }
