@@ -54,12 +54,17 @@
     </p-treeTable> -->
     <div *ngIf="isUserQueryInterface">
       <p-toast></p-toast>
-      <p-treeTable [value]="data" [columns]="columns" [scrollable]="true" [paginator]="true" [rows]="10" selectionMode="single" [(selection)]="selectedNode" dataKey="name" (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)" [tableStyle]="{'min-width':'50rem'}">
+      <p-treeTable [value]="data" [columns]="columns" [scrollable]="true" scrollHeight="100%" [resizableColumns]="true" columnResizeMode="expand" [paginator]="true" [rows]="100" selectionMode="single" [(selection)]="selectedNode" dataKey="name" (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnselect($event)" [tableStyle]="{'min-width':'50rem'}">
         <ng-template pTemplate="caption"> Query Response </ng-template>
+        <ng-template pTemplate="colgroup" let-columns>
+          <colgroup>
+              <col *ngFor="let col of columns" style="width:250px" />
+          </colgroup>
+      </ng-template>
         <ng-template pTemplate="header" let-columns>
           <!-- Define the table column headers -->
           <tr>
-            <th *ngFor="let column of columns" [ttSortableColumn]="column.field">{{ column.field }}
+            <th *ngFor="let column of columns" [ttSortableColumn]="column.field" ttResizableColumn>{{ column.field }}
             <!-- Sort table -->
               <p-treeTableSortIcon [field]="column.field"></p-treeTableSortIcon>
             </th>
