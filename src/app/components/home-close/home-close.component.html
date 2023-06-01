@@ -1,11 +1,11 @@
 
 <div class="card flex justify-content-center">
-    <p-button label="Close List Grid" [loading]="loading" (click)="getCloseListGrid()"></p-button>
+    <p-button label="Home Close" [loading]="loading" (click)="getHomeCloseGrid()"></p-button>
 </div>
 
 <div class="card">
     <p-treeTable [value]="data" [columns]="homeCloseCols" [scrollable]="true" [paginator]="true" [rows]="10" [tableStyle]="{'min-width':'50rem'}">
-        <ng-template pTemplate="caption"> Close List Response </ng-template>
+        <ng-template pTemplate="caption"> Home Close Response </ng-template>
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th id="" *ngFor="let col of columns">{{ col.headerName }}</th>
@@ -17,10 +17,6 @@
                 <td *ngFor="let col of columns; let i = index" [ngClass]="{'negative_number': rowData[col.field] < 0}">
                     <p-treeTableToggler [rowNode]="rowNode" *ngIf="i === 0"></p-treeTableToggler>
                     {{ rowData[col.field] }}
-                </td>
-                <td>
-                    <p-button icon="pi pi-search" styleClass="p-button-success" [style]="{ 'margin-right': '.5em' }" (click)="recalculateSnapshots()"></p-button>
-                    <p-button icon="pi pi-pencil" styleClass="p-button-warning" (click)="deleteSnapshots()"></p-button>
                 </td>
             </tr>
         </ng-template>
