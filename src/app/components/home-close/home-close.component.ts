@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PrimeService } from '../../../services/prime.service';
-import { reduce } from 'rxjs';
+import { TreeNode } from 'primeng/api';
 
 interface Category {
   category_id: number;
@@ -33,6 +33,7 @@ export class HomeCloseComponent implements OnInit{
   categories: Category[] = [];
   resizableFlag = true
   frozenCols: any[] = [];
+  selectedNodes: TreeNode[] = [];
 
 
   ngOnInit(): void {
