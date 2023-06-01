@@ -17,6 +17,7 @@ import { CloseListComponent } from './components/close-list/close-list.component
 import { HomeComponent } from './components/home/home.component';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { HomeCloseComponent } from './components/home-close/home-close.component';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { HomeCloseComponent } from './components/home-close/home-close.component
     ButtonModule,
     ToastModule,
     BrowserAnimationsModule,
-    TabMenuModule
+    TabMenuModule,
+    CheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
