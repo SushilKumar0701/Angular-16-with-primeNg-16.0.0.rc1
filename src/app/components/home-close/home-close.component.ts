@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PrimeService } from '../../../services/prime.service';
-import { TreeNode } from 'primeng/api';
+import { reduce } from 'rxjs';
 
 interface Category {
   category_id: number;
@@ -33,7 +33,6 @@ export class HomeCloseComponent implements OnInit{
   categories: Category[] = [];
   resizableFlag = true
   frozenCols: any[] = [];
-  selectedNodes: TreeNode[] = [];
 
 
   ngOnInit(): void {
@@ -159,5 +158,9 @@ export class HomeCloseComponent implements OnInit{
   formatGridValues(value:any){
     console.log("Values ", value)
     return (typeof(value) != 'string' && value != null ) ? (value >= 0 ? ('$'+value.toLocaleString('en-US', {maximumFractionDigits: 2, minimumFractionDigits: 2})) : (`<span class="custom-grid-css">($`+Math.abs(value).toLocaleString('en-US', {maximumFractionDigits: 2, minimumFractionDigits: 2})+`)</span>`)) : value
+  }
+
+  checkValue(id:any, checkedNode:any){
+    console.log("Checked node ", checkedNode)
   }
 }
