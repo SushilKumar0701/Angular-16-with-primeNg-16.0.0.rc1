@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PrimeService } from '../../../services/prime.service';
-import { reduce } from 'rxjs';
+import { TreeNode } from 'primeng/api';
 
 interface Category {
   category_id: number;
@@ -33,6 +33,7 @@ export class HomeCloseComponent implements OnInit{
   categories: Category[] = [];
   resizableFlag = true
   frozenCols: any[] = [];
+  selectedNodes: TreeNode[] = [];
 
 
   ngOnInit(): void {
@@ -162,5 +163,28 @@ export class HomeCloseComponent implements OnInit{
 
   checkValue(id:any, checkedNode:any){
     console.log("Checked node ", checkedNode)
+  }
+
+  expandAll(){
+    this.data.forEach((node) => {
+      this.expandRecursive(node, true);
+    });
+    console.log("Data ",this.data)
+  }
+
+  collapseAll(){
+    this.data.forEach((node) => {
+      this.expandRecursive(node, false);
+    });
+    console.log("Data ",this.data)
+  }
+
+  private expandRecursive(node: TreeNode, isExpand: boolean) {
+    node.expanded = isExpand;
+    if(node.children) {
+      node.children.forEach((childNode:any) => {
+        this.expandRecursive(childNode, isExpand);
+      });
+    }
   }
 }

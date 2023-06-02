@@ -4,8 +4,17 @@
 </div>
 
 <div class="card">
-    <p-treeTable [value]="data" [columns]="homeCloseCols" [frozenColumns]="frozenCols" [scrollable]="true" scrollHeight="300px" frozenWidth="200px" [tableStyle]="{'min-width':'50rem'}">
-        <ng-template pTemplate="caption"> Home Close Response </ng-template>
+    <div class="mb-3">
+        <button pButton type="button" label="Expand all" (click)="expandAll()" class="mr-2"></button>
+        <button pButton type="button" label="Collapse all" (click)="collapseAll()"></button>
+    </div>
+    <p-treeTable class="treetable w-full md:w-30rem" [value]="data" [columns]="homeCloseCols" [frozenColumns]="frozenCols" [scrollable]="true" scrollHeight="300px" frozenWidth="200px" selectionMode="checkbox" [(selection)]="selectedNodes" [tableStyle]="{'min-width':'50rem'}">
+        <ng-template pTemplate="caption">
+            <div class="flex">
+                <p-treeTableHeaderCheckbox></p-treeTableHeaderCheckbox>
+                <span class="ml-2">Toggle All</span>
+            </div>
+        </ng-template>
         <ng-template pTemplate="colgroup" let-columns>
             <colgroup>
                 <col *ngFor="let col of columns" style="width:250px" />
@@ -29,7 +38,8 @@
             <tr style="height: 57px">
                 <td>
                     <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
-                    <p-checkbox inputId="checked" [binary]="true" (onChange)="checkValue(checkElm.checked, rowData.line_name)" #checkElm></p-checkbox>
+                    <p-treeTableCheckbox [value]="rowNode"></p-treeTableCheckbox>
+                    <!-- <p-checkbox inputId="checked" [binary]="true" (onChange)="checkValue(checkElm.checked, rowData.line_name)" #checkElm></p-checkbox> -->
                     {{ rowData.line_name }}
                 </td>
             </tr>
